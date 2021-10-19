@@ -1,0 +1,59 @@
+:root {
+    --clr-bg: #282828;
+    --clr-text: #ebdbb2;
+    --clr-accent: #fabd2f;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
+    height: 100%;
+    font-family: "Press Start 2P";
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    box-shadow: rgb(32 33 36 / 28%) 0px 1px 3px;
+}
+
+.start-btn {
+    background-color: var(--clr-bg);
+    border: 2px solid var(--clr-accent);
+    color: var(--clr-text);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+}

@@ -1,0 +1,58 @@
+import Ship from "../app/factories/ship";
+
+let ship;
+beforeEach(() => {
+    ship = Ship("Cruiser", 3);
+});
+
+describe("Ship Factory Function", () => {
+    describe("Properties", () => {
+        test("name", () => {
+            expect(ship.name).toBe("Cruiser");
+        });
+
+        test("id", () => {
+            expect(ship.id).toBe("cruiser");
+        });
+
+        test("length", () => {
+            expect(ship.length).toBe(3);
+        });
+
+        test("isVertical", () => {
+            expect(ship.isVertical).toBe(false);
+        });
+
+        test("hits", () => {
+            const hits = Array(ship.length).fill(false);
+            const isHit = ship.hits.every((item) => item);
+
+            expect(ship.hits).toStrictEqual(hits);
+            expect(isHit).toBe(false);
+        });
+    });
+
+    describe("Methods", () => {
+        test("hit", () => {
+            ship.hit(2);
+            expect(ship.hits[2]).toBe(true);
+        });
+
+        test("isSunk", () => {
+            expect(ship.isSunk()).toBe(false);
+            ship.hit(0);
+            expect(ship.isSunk()).toBe(false);
+            for (let i = 0; i < ship.length; i++) {
+                ship.hit(i);
+            }
+            expect(ship.isSunk()).toBe(true);
+        });
+
+        test("toggleDirection", () => {
+            ship.toggleDirection();
+            expect(ship.isVertical).toBe(true);
+            ship.toggleDirection();
+            expect(ship.isVertical).toBe(false);
+        });
+    });
+});

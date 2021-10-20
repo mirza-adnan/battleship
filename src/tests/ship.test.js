@@ -20,7 +20,7 @@ describe("Ship Factory Function", () => {
         });
 
         test("isVertical", () => {
-            expect(ship.isVertical).toBe(false);
+            expect(ship.isHorizontal).toBe(true);
         });
 
         test("hits", () => {
@@ -50,9 +50,9 @@ describe("Ship Factory Function", () => {
 
         test("toggleDirection", () => {
             ship.toggleDirection();
-            expect(ship.isVertical).toBe(true);
+            expect(ship.isHorizontal).toBe(false);
             ship.toggleDirection();
-            expect(ship.isVertical).toBe(false);
+            expect(ship.isHorizontal).toBe(true);
         });
     });
 });

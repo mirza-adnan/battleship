@@ -1,5 +1,5 @@
 function Ship(name, length) {
-    let isVertical = false;
+    let isHorizontal = true;
     const hits = Array(length).fill(false); // false means not hit
     const id = name.toLowerCase();
 
@@ -12,7 +12,7 @@ function Ship(name, length) {
     };
 
     const toggleDirection = () => {
-        isVertical = !isVertical;
+        isHorizontal = !isHorizontal;
     };
 
     return Object.freeze({
@@ -25,8 +25,8 @@ function Ship(name, length) {
         get length() {
             return length;
         },
-        get isVertical() {
-            return isVertical;
+        get isHorizontal() {
+            return isHorizontal;
         },
         get hits() {
             return hits;

@@ -93,6 +93,16 @@ describe("GameBoard Factory Function", () => {
             });
         });
 
+        describe("autoPlaceShip", () => {
+            test("auto places ship at random cords", () => {
+                const ship = Ship("Cruiser", 3);
+                const ship2 = Ship("Destroyer", 2);
+                gameBoard.autoPlaceShip(ship);
+                gameBoard.autoPlaceShip(ship2);
+                expect(gameBoard.placedShips.length).toBe(2);
+            });
+        });
+
         describe("receiveAttack", () => {
             test("attacks ship", () => {
                 const ship = Ship("Cruiser", 3);

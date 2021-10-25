@@ -7,7 +7,7 @@ function GameBoard() {
 
     const placedShips = [];
 
-    const isValidPosition = (ship, y, x) => {
+    const hasEnoughSpace = (ship, y, x) => {
         // Depending on the orientation, if the difference between the Width and x/y coordinate
         // is less than the length of the ship, that means there isn't enough space for the ship
         if (ship.isHorizontal) {
@@ -44,10 +44,14 @@ function GameBoard() {
         return empty;
     };
 
+    const isValidPosition = (ship, y, x) => {
+        return hasEnoughSpace(ship, y, x) && isEmpty(ship, y, x);
+    };
+
     const placeShip = (ship, y, x) => {
         // placing ship at the giver coordinate if the ship fits and
         // and the spots are unoccupied
-        if (isValidPosition(ship, y, x) && isEmpty(ship, y, x)) {
+        if (isValidPosition(ship, y, x)) {
             if (ship.isHorizontal) {
                 for (let i = 0; i < ship.length; i++) {
                     board[y][x + i] = { ship, index: i };
@@ -61,6 +65,29 @@ function GameBoard() {
             return true;
         }
         return false;
+    };
+
+    const randomCords = () => {
+        const y = Math.floor(Math.random() * WIDTH);
+        const x = Math.floor(Math.random() * WIDTH);
+        return [y, x];
+    };
+
+    const autoPlaceShip = (ship) => {
+        const [y, x] = randomCords();
+        const orientation = Math.floor(Math.random() * 2);
+
+        // value of orientation can be either 1 or 0
+        // if it is 1, we make the ship vertical
+        if (orientation === 1) {
+            ship.toggleDirection();
+        }
+
+        if (isValidPosition(ship, y, x)) {
+            placeShip(ship, y, x);
+        } else {
+            autoPlaceShip(ship);
+        }
     };
 
     const receiveAttack = (y, x) => {
@@ -85,7 +112,11 @@ function GameBoard() {
         get board() {
             return board;
         },
+        get placedShips() {
+            return placedShips;
+        },
         placeShip,
+        autoPlaceShip,
         receiveAttack,
         areShipsSunk,
     });

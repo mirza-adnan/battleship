@@ -1,4 +1,5 @@
 import { WIDTH } from "../helpers/data";
+import { randomCords } from "../helpers/functions";
 
 function GameBoard() {
     const board = Array(WIDTH)
@@ -54,23 +55,17 @@ function GameBoard() {
         if (isValidPosition(ship, y, x)) {
             if (ship.isHorizontal) {
                 for (let i = 0; i < ship.length; i++) {
-                    board[y][x + i] = { ship, index: i };
+                    board[y][x + i] = { ship, hit: false, index: i };
                 }
             } else {
                 for (let i = 0; i < ship.length; i++) {
-                    board[y + i][x] = { ship, index: i };
+                    board[y + i][x] = { ship, hit: false, index: i };
                 }
             }
             placedShips.push(ship);
             return true;
         }
         return false;
-    };
-
-    const randomCords = () => {
-        const y = Math.floor(Math.random() * WIDTH);
-        const x = Math.floor(Math.random() * WIDTH);
-        return [y, x];
     };
 
     const autoPlaceShip = (ship) => {
@@ -108,6 +103,15 @@ function GameBoard() {
         return sunk;
     };
 
+    const isValidAttack = (y, x) => {
+        if (board[y][x]) {
+            return false;
+        } else if (board[y][x].hit) {
+            return false;
+        }
+        return true;
+    };
+
     return Object.freeze({
         get board() {
             return board;
@@ -119,6 +123,7 @@ function GameBoard() {
         autoPlaceShip,
         receiveAttack,
         areShipsSunk,
+        isValidAttack,
     });
 }
 

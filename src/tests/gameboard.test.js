@@ -142,5 +142,31 @@ describe("GameBoard Factory Function", () => {
                 expect(gameBoard.areShipsSunk()).toBe(false);
             });
         });
+
+        describe("isValidAttack", () => {
+            test("ship twice-invalid", () => {
+                const ship = Ship("Cruiser", 3);
+
+                gameBoard.placeShip(ship, 2, 4);
+                gameBoard.receiveAttack(2, 4);
+                expect(gameBoard.isValidAttack(2, 4)).toBe(false);
+            });
+
+            test("empty spot twice-invalid", () => {
+                gameBoard.receiveAttack(5, 4);
+                expect(gameBoard.isValidAttack(5, 4)).toBe(false);
+            });
+
+            test("empty spot once-valid", () => {
+                expect(gameBoard.isValidAttack(1, 4)).toBe(true);
+            });
+
+            test("ship once-valid", () => {
+                const ship = Ship("Cruiser", 3);
+                gameBoard.placeShip(ship, 7, 4);
+                console.log(gameBoard.board[7][4]);
+                expect(gameBoard.isValidAttack(7, 4)).toBe(true);
+            });
+        });
     });
 });

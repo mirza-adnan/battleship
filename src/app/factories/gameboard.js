@@ -55,11 +55,11 @@ function GameBoard() {
         if (isValidPosition(ship, y, x)) {
             if (ship.isHorizontal) {
                 for (let i = 0; i < ship.length; i++) {
-                    board[y][x + i] = { ship, hit: false, index: i };
+                    board[y][x + i] = { ship, status: "safe", index: i };
                 }
             } else {
                 for (let i = 0; i < ship.length; i++) {
-                    board[y + i][x] = { ship, hit: false, index: i };
+                    board[y + i][x] = { ship, hit: "safe", index: i };
                 }
             }
             placedShips.push(ship);
@@ -90,6 +90,7 @@ function GameBoard() {
             const ship = board[y][x].ship;
             const index = board[y][x].index;
             ship.hit(index);
+            board[y][x].status = "hit";
         } else {
             board[y][x] = true;
         }
@@ -104,9 +105,9 @@ function GameBoard() {
     };
 
     const isValidAttack = (y, x) => {
-        if (board[y][x]) {
+        if (board[y][x].status === "hit") {
             return false;
-        } else if (board[y][x].hit) {
+        } else if (!board[y][x].ship && board[y][x]) {
             return false;
         }
         return true;

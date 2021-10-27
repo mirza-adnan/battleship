@@ -4,7 +4,7 @@ import { randomCords } from "../helpers/functions";
 function GameBoard() {
     const board = Array(WIDTH)
         .fill(0)
-        .map((item) => Array(WIDTH).fill(false)); // false means unoccupied/untouched
+        .map((item) => Array(WIDTH).fill("empty"));
 
     const placedShips = [];
 
@@ -50,22 +50,16 @@ function GameBoard() {
     };
 
     const placeShip = (ship, y, x) => {
-        // placing ship at the giver coordinate if the ship fits and
-        // and the spots are unoccupied
-        if (isValidPosition(ship, y, x)) {
-            if (ship.isHorizontal) {
-                for (let i = 0; i < ship.length; i++) {
-                    board[y][x + i] = { ship, status: "safe", index: i };
-                }
-            } else {
-                for (let i = 0; i < ship.length; i++) {
-                    board[y + i][x] = { ship, hit: "safe", index: i };
-                }
+        if (ship.isHorizontal) {
+            for (let i = 0; i < ship.length; i++) {
+                board[y][x + i] = { ship, hit: false, index: i };
             }
-            placedShips.push(ship);
-            return true;
+        } else {
+            for (let i = 0; i < ship.length; i++) {
+                board[y + i][x] = { ship, hit: false, index: i };
+            }
         }
-        return false;
+        placedShips.push(ship);
     };
 
     const autoPlaceShip = (ship) => {
@@ -90,9 +84,9 @@ function GameBoard() {
             const ship = board[y][x].ship;
             const index = board[y][x].index;
             ship.hit(index);
-            board[y][x].status = "hit";
+            board[y][x].hit = true;
         } else {
-            board[y][x] = true;
+            board[y][x] = "miss";
         }
     };
 
@@ -105,9 +99,9 @@ function GameBoard() {
     };
 
     const isValidAttack = (y, x) => {
-        if (board[y][x].status === "hit") {
+        if (board[y][x].hit) {
             return false;
-        } else if (!board[y][x].ship && board[y][x]) {
+        } else if (board[y][x] === "miss") {
             return false;
         }
         return true;
@@ -120,6 +114,7 @@ function GameBoard() {
         get placedShips() {
             return placedShips;
         },
+        isValidPosition,
         placeShip,
         autoPlaceShip,
         receiveAttack,

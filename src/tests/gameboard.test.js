@@ -19,77 +19,33 @@ describe("GameBoard Factory Function", () => {
             });
 
             test("board items", () => {
-                expect(gameBoard.board[0].every((item) => !item)).toBe(true);
+                expect(
+                    gameBoard.board[0].every((item) => item === "empty")
+                ).toBe(true);
             });
         });
     });
 
     describe("Methods", () => {
         describe("placeShip", () => {
-            describe("horizontal", () => {
+            test("places ship horizontally", () => {
                 const ship = Ship("Cruiser", 3);
-                test("places ship", () => {
-                    gameBoard.placeShip(ship, 4, 6);
-                    for (let i = 0; i < ship.length; i++) {
-                        expect(gameBoard.board[4][6 + i].ship.name).toBe(
-                            "Cruiser"
-                        );
-                    }
-                });
+                gameBoard.placeShip(ship, 2, 4);
 
-                test("doesn't place at invalid position", () => {
-                    const x = WIDTH - ship.length;
-                    const y = 5;
-                    gameBoard.placeShip(ship, y, x + 1);
-                    expect(gameBoard.board[y][x + 1]).toBe(false);
-                });
-
-                test("doesn't place in an occupied spot", () => {
-                    const ship2 = Ship("Battleship", 5);
-                    const y = 5;
-                    const x = 4;
-                    gameBoard.placeShip(ship2, y, x);
-                    gameBoard.placeShip(ship, y, x);
-                    for (let i = 0; i < ship2.length; i++) {
-                        expect(gameBoard.board[y][x + 1].ship.name).toBe(
-                            "Battleship"
-                        );
-                    }
-                });
+                for (let i = 0; i < ship.length; i++) {
+                    expect(gameBoard.board[2][4 + i].ship.name).toBe("Cruiser");
+                }
             });
 
-            describe("vertical", () => {
+            test("places ship vertically", () => {
                 const ship = Ship("Cruiser", 3);
                 ship.toggleDirection();
-                test("places ship", () => {
-                    gameBoard.placeShip(ship, 4, 6);
-                    for (let i = 0; i < ship.length; i++) {
-                        expect(gameBoard.board[4 + i][6].ship.name).toBe(
-                            "Cruiser"
-                        );
-                    }
-                });
 
-                test("doesn't place at invalid position", () => {
-                    const x = 5;
-                    const y = WIDTH - ship.length;
-                    gameBoard.placeShip(ship, y + 1, 1);
-                    expect(gameBoard.board[y + 1][x]).toBe(false);
-                });
+                gameBoard.placeShip(ship, 2, 3);
 
-                test("doesn't place in an occupied spot", () => {
-                    const ship2 = Ship("Battleship", 5);
-                    ship2.toggleDirection();
-                    const y = 4;
-                    const x = 5;
-                    gameBoard.placeShip(ship2, y, x);
-                    gameBoard.placeShip(ship, y, x);
-                    for (let i = 0; i < ship2.length; i++) {
-                        expect(gameBoard.board[y + i][x].ship.name).toBe(
-                            "Battleship"
-                        );
-                    }
-                });
+                for (let i = 0; i < ship.length; i++) {
+                    expect(gameBoard.board[2 + i][3].ship.name).toBe("Cruiser");
+                }
             });
         });
 
@@ -106,16 +62,22 @@ describe("GameBoard Factory Function", () => {
         describe("receiveAttack", () => {
             test("attacks ship", () => {
                 const ship = Ship("Cruiser", 3);
+
                 gameBoard.placeShip(ship, 2, 5);
                 gameBoard.receiveAttack(2, 5);
+
                 expect(ship.hits[0]).toBe(true);
+                expect(gameBoard.board[2][5].hit).toBe(true);
+
                 gameBoard.receiveAttack(2, 6);
+
                 expect(ship.hits[1]).toBe(true);
+                expect(gameBoard.board[2][6].hit).toBe(true);
             });
 
             test("marks other spots as miss", () => {
                 gameBoard.receiveAttack(7, 2);
-                expect(gameBoard.board[7][2]).toBe(true);
+                expect(gameBoard.board[7][2]).toBe("miss");
             });
         });
 
@@ -164,7 +126,6 @@ describe("GameBoard Factory Function", () => {
             test("ship once-valid", () => {
                 const ship = Ship("Cruiser", 3);
                 gameBoard.placeShip(ship, 7, 4);
-                console.log(gameBoard.board[7][4]);
                 expect(gameBoard.isValidAttack(7, 4)).toBe(true);
             });
         });

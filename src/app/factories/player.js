@@ -1,12 +1,10 @@
-import GameBoard from "./gameboard";
 import Ship from "./ship";
 import { SHIPS } from "../helpers/data";
 import { randomCords } from "../helpers/functions";
 
-function Player(type) {
+function Player(type = "human") {
     let turn = false;
     const isAi = type === "computer" ? true : false;
-    const gameBoard = GameBoard();
     const ships = SHIPS.map((ship) => {
         return Ship(ship.name, ship.length);
     });
@@ -29,12 +27,6 @@ function Player(type) {
         }
     };
 
-    const placeAllShips = () => {
-        ships.forEach((ship) => {
-            gameBoard.autoPlaceShip(ship);
-        });
-    };
-
     return Object.freeze({
         get turn() {
             return turn;
@@ -42,16 +34,12 @@ function Player(type) {
         get isAi() {
             return isAi;
         },
-        get gameBoard() {
-            return gameBoard;
-        },
         get ships() {
             return ships;
         },
         toggleTurn,
         attack,
         randomAttack,
-        placeAllShips,
     });
 }
 

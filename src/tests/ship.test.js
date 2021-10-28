@@ -12,7 +12,9 @@ describe("Ship Factory Function", () => {
         });
 
         test("id", () => {
+            const ship2 = Ship("Battle Ship", 2);
             expect(ship.id).toBe("cruiser");
+            expect(ship2.id).toBe("battle-ship");
         });
 
         test("length", () => {

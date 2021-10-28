@@ -1,7 +1,7 @@
 function Ship(name, length) {
     let isHorizontal = true;
     const hits = Array(length).fill(false); // false means not hit
-    const id = name.toLowerCase();
+    const id = name.toLowerCase().split(" ").join("-");
 
     const hit = (index) => {
         hits[index] = true;

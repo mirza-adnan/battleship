@@ -27,6 +27,12 @@ function Player(type = "human") {
         }
     };
 
+    const invertShips = () => {
+        ships.forEach((ship) => {
+            ship.toggleDirection();
+        });
+    };
+
     return Object.freeze({
         get turn() {
             return turn;

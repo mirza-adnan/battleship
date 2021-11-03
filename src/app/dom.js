@@ -1,4 +1,4 @@
-import { WIDTH, SHIPS, ELEMENTS } from "../helpers/data";
+import { WIDTH, SHIPS, ELEMENTS } from "./helpers/data";
 
 const DOM = (() => {
     const populateGrid = (grid) => {
@@ -14,14 +14,16 @@ const DOM = (() => {
     };
 
     const createShips = (container) => {
-        SHIPS.forEach((ship) => {
+        SHIPS.forEach((ship, index) => {
             const shipEle = document.createElement("div");
             shipEle.classList.add("ship", ship.id);
             shipEle.draggable = true;
+            shipEle.dataset.index = index;
 
             for (let i = 0; i < ship.length; i++) {
                 const shipSquare = document.createElement("div");
                 shipSquare.classList.add("ship-square", `${ship.id}-${i}`);
+                shipSquare.dataset.index = i;
                 shipEle.appendChild(shipSquare);
             }
 

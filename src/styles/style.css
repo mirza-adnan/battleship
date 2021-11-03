@@ -4,6 +4,7 @@
     --clr-accent: #fabd2f;
     --clr-green: #b8d041;
     --clr-red: #fb4934;
+    --clr-white: #dddddd;
 }
 
 * {
@@ -89,6 +90,7 @@ header {
     height: 50px;
     border: 1px solid var(--clr-accent);
     padding: 0.5rem;
+    cursor: pointer;
 }
 
 .grid-ship {
@@ -119,4 +121,22 @@ header {
     width: 48px;
     height: 48px;
     background-color: var(--clr-accent);
+}
+
+.placed-ship-square {
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-accent);
+}
+
+.invisible {
+    display: none;
+}
+
+.success {
+    background-color: var(--clr-green);
+}
+
+.danger {
+    background-color: var(--clr-red);
 }

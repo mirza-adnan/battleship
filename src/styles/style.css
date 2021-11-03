@@ -66,6 +66,18 @@ header {
     transform: scale(0.95);
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.control-btn {
+    background-color: var(--clr-text);
+    border: 2px solid var(--clr-accent);
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -104,17 +116,31 @@ header {
     height: 502px;
     border: 2px solid var(--clr-accent);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
+.ships-container.horizontal {
+    flex-direction: column;
+}
+
+.ships-container.vertical {
+    flex-direction: row;
+}
+
 .ship {
     display: flex;
-    flex-direction: row;
     gap: 2px;
+}
+
+.horizontal .ship {
+    flex-direction: row;
+}
+
+.vertical .ship {
+    flex-direction: column;
 }
 
 .ship-square {

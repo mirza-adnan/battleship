@@ -2,8 +2,8 @@ import Ship from "./ship";
 import { SHIPS } from "../helpers/data";
 import { randomCords } from "../helpers/functions";
 
-function Player(type = "human") {
-    let turn = false;
+function Player(playerNum, type = "human") {
+    let turn = playerNum === 1 ? true : false;
     const isAi = type === "computer" ? true : false;
     const ships = SHIPS.map((ship) => {
         return Ship(ship.name, ship.length);
@@ -46,6 +46,7 @@ function Player(type = "human") {
         toggleTurn,
         attack,
         randomAttack,
+        invertShips,
     });
 }
 

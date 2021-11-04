@@ -3,7 +3,7 @@ const Drag = (player, board, grid) => {
     let shipSquareIndex;
     let hoveredCells = [];
 
-    const removeSuccessClass = () => {
+    const resetHoveredCells = () => {
         hoveredCells.forEach((cell) => {
             cell.classList.remove("success");
         });
@@ -28,7 +28,7 @@ const Drag = (player, board, grid) => {
     const dragEnd = (e) => {
         const ship = e.target;
         ship.classList.remove("invisible");
-        removeSuccessClass();
+        resetHoveredCells();
         resetDraggedShip();
     };
 
@@ -53,7 +53,8 @@ const Drag = (player, board, grid) => {
             const x = x0 - (ship.isHorizontal ? shipSquareIndex : 0);
 
             if (board.isValidPosition(ship, y, x)) {
-                removeSuccessClass();
+                resetHoveredCells();
+
                 if (ship.isHorizontal) {
                     for (let i = 0; i < ship.length; i++) {
                         grid.childNodes[y * 10 + x + i].classList.add(

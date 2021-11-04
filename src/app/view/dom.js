@@ -1,6 +1,7 @@
-import { WIDTH, SHIPS, ELEMENTS } from "../helpers/data";
+import { WIDTH, SHIPS } from "../helpers/data";
+import ELEMENTS from "./elements";
 
-const DOM = (() => {
+function DOM() {
     const populateGrid = (grid) => {
         for (let i = 0; i < WIDTH; i++) {
             for (let j = 0; j < WIDTH; j++) {
@@ -41,6 +42,6 @@ const DOM = (() => {
         createShips,
         changeDirection,
     });
-})();
+}
 
 export default DOM;

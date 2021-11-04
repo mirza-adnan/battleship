@@ -4,7 +4,7 @@
     --clr-accent: #fabd2f;
     --clr-green: #b8d041;
     --clr-red: #fb4934;
-    --clr-white: #dddddd;
+    --clr-white: #ededed;
 }
 
 * {
@@ -165,4 +165,8 @@ header {
 
 .danger {
     background-color: var(--clr-red);
+}
+
+.miss {
+    background-color: var(--clr-text);
 }

@@ -1,4 +1,4 @@
-import { WIDTH, SHIPS, ELEMENTS } from "./helpers/data";
+import { WIDTH, SHIPS, ELEMENTS } from "../helpers/data";
 
 const DOM = (() => {
     const populateGrid = (grid) => {
@@ -31,9 +31,15 @@ const DOM = (() => {
         });
     };
 
+    const changeDirection = () => {
+        ELEMENTS.shipsContainer.classList.toggle("horizontal");
+        ELEMENTS.shipsContainer.classList.toggle("vertical");
+    };
+
     return Object.freeze({
         populateGrid,
         createShips,
+        changeDirection,
     });
 })();
 

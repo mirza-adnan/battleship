@@ -2,7 +2,7 @@ import { WIDTH } from "../helpers/data";
 import { randomCords } from "../helpers/functions";
 
 function GameBoard() {
-    const board = Array(WIDTH)
+    let board = Array(WIDTH)
         .fill(0)
         .map((item) => Array(WIDTH).fill("empty"));
 
@@ -107,6 +107,12 @@ function GameBoard() {
         return true;
     };
 
+    const reset = () => {
+        board = Array(WIDTH)
+            .fill(0)
+            .map((item) => Array(WIDTH).fill("empty"));
+    };
+
     return Object.freeze({
         get board() {
             return board;
@@ -120,6 +126,7 @@ function GameBoard() {
         receiveAttack,
         areShipsSunk,
         isValidAttack,
+        reset,
     });
 }
 

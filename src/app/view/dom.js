@@ -53,6 +53,11 @@ const DOM = (() => {
         ELEMENTS.shipsContainer.classList.toggle("vertical");
     };
 
+    const resetDirection = () => {
+        ELEMENTS.shipsContainer.classList.add("horizontal");
+        ELEMENTS.shipsContainer.classList.remove("vertical");
+    };
+
     const hideShips = () => {
         const ships = document.querySelectorAll(".ship");
         ships.forEach((ship) => {
@@ -67,13 +72,22 @@ const DOM = (() => {
         });
     };
 
+    const startGame = () => {
+        ELEMENTS.p1Grid.classList.remove("invisible");
+        ELEMENTS.p2Grid.classList.remove("invisible");
+        ELEMENTS.shipsContainer.classList.add("invisible");
+        ELEMENTS.controlBtns.classList.add("invisible");
+    };
+
     return Object.freeze({
         renderGrid,
         createShips,
         changeDirection,
+        resetDirection,
         clearGrid,
         hideShips,
         showShips,
+        startGame,
     });
 })();
 

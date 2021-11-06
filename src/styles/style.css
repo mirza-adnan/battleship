@@ -159,6 +159,10 @@ header {
     display: none;
 }
 
+.removed {
+    display: none;
+}
+
 .success {
     background-color: var(--clr-green);
 }

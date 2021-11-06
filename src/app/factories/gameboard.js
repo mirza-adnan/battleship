@@ -36,7 +36,7 @@ function GameBoard() {
             }
         } else {
             for (let i = 0; i < ship.length; i++) {
-                if (board[y + 1][x].ship) {
+                if (board[y + i][x].ship) {
                     empty = false;
                     break;
                 }

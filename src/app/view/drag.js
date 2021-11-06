@@ -1,3 +1,5 @@
+import DOM from "./dom";
+
 const Drag = (player, board, grid) => {
     let draggedShip;
     let shipSquareIndex;
@@ -70,8 +72,6 @@ const Drag = (player, board, grid) => {
                         hoveredCells.push(grid.childNodes[(y + i) * 10 + x]);
                     }
                 }
-            } else {
-                console.log("invalid position");
             }
         }
     };
@@ -79,14 +79,23 @@ const Drag = (player, board, grid) => {
     const dragLeave = (e) => {};
 
     const dragDrop = (e) => {
-        if (draggedShip) {
-            hoveredCells.forEach((cell) => {
-                const placedShipSquare = document.createElement("div");
-                placedShipSquare.classList.add("placed-ship-square");
-                cell.appendChild(placedShipSquare);
-            });
-            draggedShip.remove();
-            resetDraggedShip();
+        if (hoveredCells.length > 0 && draggedShip) {
+            const y = Number(hoveredCells[0].dataset.y);
+            const x = Number(hoveredCells[0].dataset.x);
+            const ship = player.ships[draggedShip.dataset.index];
+
+            if (board.isValidPosition(ship, y, x)) {
+                board.placeShip(ship, y, x);
+                DOM.renderGrid(board.board, grid);
+                addDragDropListeners();
+                // hoveredCells.forEach((cell) => {
+                //     const placedShipSquare = document.createElement("div");
+                //     placedShipSquare.classList.add("placed-ship-square");
+                //     cell.appendChild(placedShipSquare);
+                // });
+                draggedShip.classList.add("removed");
+                resetDraggedShip();
+            }
         }
     };
 

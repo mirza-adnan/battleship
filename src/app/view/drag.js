@@ -87,7 +87,7 @@ const Drag = (player, board, grid) => {
             if (board.isValidPosition(ship, y, x)) {
                 board.placeShip(ship, y, x);
                 DOM.renderGrid(board.board, grid);
-                addDragDropListeners();
+                addGridCellListeners();
                 // hoveredCells.forEach((cell) => {
                 //     const placedShipSquare = document.createElement("div");
                 //     placedShipSquare.classList.add("placed-ship-square");
@@ -99,14 +99,16 @@ const Drag = (player, board, grid) => {
         }
     };
 
-    const addDragDropListeners = () => {
+    const addShipListeners = () => {
         const ships = document.querySelectorAll(".ship");
         ships.forEach((ship) => {
             ship.addEventListener("dragstart", dragStart);
             ship.addEventListener("dragend", dragEnd);
             ship.addEventListener("mousedown", assignSquareIndex);
         });
+    };
 
+    const addGridCellListeners = () => {
         const gridCells = grid.querySelectorAll(".grid-cell");
         gridCells.forEach((cell) => {
             cell.addEventListener("dragover", dragOver);
@@ -116,8 +118,15 @@ const Drag = (player, board, grid) => {
         });
     };
 
+    const addDragDropListeners = () => {
+        addShipListeners();
+        addGridCellListeners();
+    };
+
     return Object.freeze({
         addDragDropListeners,
+        addShipListeners,
+        addGridCellListeners,
     });
 };
 

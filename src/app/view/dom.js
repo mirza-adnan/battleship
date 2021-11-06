@@ -1,14 +1,30 @@
 import { WIDTH, SHIPS } from "../helpers/data";
 import ELEMENTS from "./elements";
 
-function DOM() {
-    const populateGrid = (grid) => {
+const DOM = (() => {
+    const clearGrid = (grid) => {
+        grid.textContent = "";
+    };
+    const renderGrid = (board, grid) => {
+        clearGrid(grid);
         for (let i = 0; i < WIDTH; i++) {
             for (let j = 0; j < WIDTH; j++) {
                 const gridCell = document.createElement("div");
+                const boardCell = board[i][j];
                 gridCell.classList.add("grid-cell");
                 gridCell.dataset.y = i;
                 gridCell.dataset.x = j;
+                if (boardCell === "miss") {
+                    gridCell.classList.add("miss");
+                } else if (boardCell.ship) {
+                    if (boardCell.hit) {
+                        grid.classList.add("danger");
+                    } else {
+                        const placedShipSquare = document.createElement("div");
+                        placedShipSquare.classList.add("placed-ship-square");
+                        gridCell.appendChild(placedShipSquare);
+                    }
+                }
                 grid.appendChild(gridCell);
             }
         }
@@ -37,11 +53,28 @@ function DOM() {
         ELEMENTS.shipsContainer.classList.toggle("vertical");
     };
 
+    const hideShips = () => {
+        const ships = document.querySelectorAll(".ship");
+        ships.forEach((ship) => {
+            ship.classList.add("removed");
+        });
+    };
+
+    const showShips = () => {
+        const ships = document.querySelectorAll(".ship");
+        ships.forEach((ship) => {
+            ship.classList.remove("removed");
+        });
+    };
+
     return Object.freeze({
-        populateGrid,
+        renderGrid,
         createShips,
         changeDirection,
+        clearGrid,
+        hideShips,
+        showShips,
     });
-}
+})();
 
 export default DOM;

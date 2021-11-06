@@ -5,7 +5,7 @@ import { randomCords } from "../helpers/functions";
 function Player(playerNum, type = "human") {
     let turn = playerNum === 1 ? true : false;
     const isAi = type === "computer" ? true : false;
-    const ships = SHIPS.map((ship) => {
+    let ships = SHIPS.map((ship) => {
         return Ship(ship.name, ship.length);
     });
 
@@ -33,6 +33,12 @@ function Player(playerNum, type = "human") {
         });
     };
 
+    const resetShips = () => {
+        ships = SHIPS.map((ship) => {
+            return Ship(ship.name, ship.length);
+        });
+    };
+
     return Object.freeze({
         get turn() {
             return turn;
@@ -47,6 +53,7 @@ function Player(playerNum, type = "human") {
         attack,
         randomAttack,
         invertShips,
+        resetShips,
     });
 }
 

@@ -66,7 +66,7 @@ header {
     transform: scale(0.95);
 }
 
-.buttons {
+.control-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,10 +91,6 @@ header {
     grid-template-columns: repeat(10, 50px);
     grid-template-rows: repeat(10, 50px);
     border: 1px solid var(--clr-accent);
-}
-
-.p2-grid {
-    display: none;
 }
 
 .grid-cell {

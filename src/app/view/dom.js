@@ -80,11 +80,25 @@ const DOM = (() => {
         });
     };
 
+    const showModal = (text) => {
+        ELEMENTS.modelText.textContent = text;
+        ELEMENTS.modalBg.style.display = "flex";
+    };
+
+    const hideModal = () => {
+        ELEMENTS.modelText.textContent = "";
+        ELEMENTS.modalBg.style.display = "none";
+    };
+
     const startGame = () => {
         ELEMENTS.p1Grid.classList.remove("invisible");
         ELEMENTS.p2Grid.classList.remove("invisible");
         ELEMENTS.shipsContainer.classList.add("invisible");
         ELEMENTS.controlBtns.classList.add("invisible");
+        ELEMENTS.startBtn.classList.add("invisible");
+        ELEMENTS.playerNames.forEach((name) => {
+            name.classList.remove("invisible");
+        });
     };
 
     return Object.freeze({
@@ -95,6 +109,8 @@ const DOM = (() => {
         clearGrid,
         hideShips,
         showShips,
+        showModal,
+        hideModal,
         startGame,
     });
 })();

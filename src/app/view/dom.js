@@ -5,26 +5,34 @@ const DOM = (() => {
     const clearGrid = (grid) => {
         grid.textContent = "";
     };
-    const renderGrid = (board, grid) => {
+    const renderGrid = (board, grid, isAi) => {
         clearGrid(grid);
         for (let i = 0; i < WIDTH; i++) {
             for (let j = 0; j < WIDTH; j++) {
                 const gridCell = document.createElement("div");
                 const boardCell = board[i][j];
+
                 gridCell.classList.add("grid-cell");
                 gridCell.dataset.y = i;
                 gridCell.dataset.x = j;
+
                 if (boardCell === "miss") {
                     gridCell.classList.add("miss");
                 } else if (boardCell.ship) {
                     if (boardCell.hit) {
-                        grid.classList.add("danger");
+                        gridCell.classList.add("danger");
                     } else {
-                        const placedShipSquare = document.createElement("div");
-                        placedShipSquare.classList.add("placed-ship-square");
-                        gridCell.appendChild(placedShipSquare);
+                        if (!isAi) {
+                            const placedShipSquare =
+                                document.createElement("div");
+                            placedShipSquare.classList.add(
+                                "placed-ship-square"
+                            );
+                            gridCell.appendChild(placedShipSquare);
+                        }
                     }
                 }
+
                 grid.appendChild(gridCell);
             }
         }

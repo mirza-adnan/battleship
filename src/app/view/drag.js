@@ -86,7 +86,7 @@ const Drag = (player, board, grid) => {
 
             if (board.isValidPosition(ship, y, x)) {
                 board.placeShip(ship, y, x);
-                DOM.renderGrid(board.board, grid);
+                DOM.renderGrid(board.board, grid, false);
                 addGridCellListeners();
                 // hoveredCells.forEach((cell) => {
                 //     const placedShipSquare = document.createElement("div");

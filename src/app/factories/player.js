@@ -17,14 +17,20 @@ function Player(playerNum, type = "human") {
         board.receiveAttack(y, x);
     };
 
-    const randomAttack = (board) => {
+    const randomAttack = (gameBoard) => {
         const [y, x] = randomCords();
 
-        if (board.isValidAttack(y, x)) {
-            board.receiveAttack(y, x);
+        if (gameBoard.isValidAttack(y, x)) {
+            gameBoard.receiveAttack(y, x);
         } else {
-            randomAttack(board);
+            randomAttack(gameBoard);
         }
+    };
+
+    const autoPlaceAllShips = (gameBoard) => {
+        ships.forEach((ship) => {
+            gameBoard.autoPlaceShip(ship);
+        });
     };
 
     const invertShips = () => {
@@ -52,6 +58,7 @@ function Player(playerNum, type = "human") {
         toggleTurn,
         attack,
         randomAttack,
+        autoPlaceAllShips,
         invertShips,
         resetShips,
     });

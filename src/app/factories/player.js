@@ -13,6 +13,10 @@ function Player(playerNum, type = "human") {
         turn = !turn;
     };
 
+    const setTurn = (newTurn) => {
+        turn = newTurn;
+    };
+
     const attack = (board, y, x) => {
         board.receiveAttack(y, x);
     };
@@ -56,6 +60,7 @@ function Player(playerNum, type = "human") {
             return ships;
         },
         toggleTurn,
+        setTurn,
         attack,
         randomAttack,
         autoPlaceAllShips,

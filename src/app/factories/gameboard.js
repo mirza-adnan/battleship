@@ -6,7 +6,7 @@ function GameBoard() {
         .fill(0)
         .map((item) => Array(WIDTH).fill("empty"));
 
-    const placedShips = [];
+    let placedShips = [];
 
     const hasEnoughSpace = (ship, y, x) => {
         // Depending on the orientation, if the difference between the Width and x/y coordinate
@@ -111,6 +111,7 @@ function GameBoard() {
         board = Array(WIDTH)
             .fill(0)
             .map((item) => Array(WIDTH).fill("empty"));
+        placedShips = [];
     };
 
     return Object.freeze({

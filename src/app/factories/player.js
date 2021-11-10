@@ -49,6 +49,11 @@ function Player(playerNum, type = "human") {
         });
     };
 
+    const reset = () => {
+        resetShips();
+        setTurn(playerNum === 1 ? true : false); // if it is player then turn will be set to true
+    };
+
     return Object.freeze({
         get turn() {
             return turn;
@@ -66,6 +71,7 @@ function Player(playerNum, type = "human") {
         autoPlaceAllShips,
         invertShips,
         resetShips,
+        reset,
     });
 }
 

@@ -99,13 +99,22 @@ const DOM = (() => {
     };
 
     const startGame = () => {
-        ELEMENTS.p1Grid.classList.remove("invisible");
         ELEMENTS.p2Grid.classList.remove("invisible");
         ELEMENTS.shipsContainer.classList.add("invisible");
         ELEMENTS.controlBtns.classList.add("invisible");
         ELEMENTS.startBtn.classList.add("invisible");
         ELEMENTS.playerNames.forEach((name) => {
             name.classList.remove("invisible");
+        });
+    };
+
+    const resetGame = () => {
+        ELEMENTS.p2Grid.classList.add("invisible");
+        ELEMENTS.shipsContainer.classList.remove("invisible");
+        ELEMENTS.controlBtns.classList.remove("invisible");
+        ELEMENTS.startBtn.classList.remove("invisible");
+        ELEMENTS.playerNames.forEach((name) => {
+            name.classList.add("invisible");
         });
     };
 
@@ -122,6 +131,7 @@ const DOM = (() => {
         showPlayAgainButton,
         hidePlayAgainButton,
         startGame,
+        resetGame,
     });
 })();
 

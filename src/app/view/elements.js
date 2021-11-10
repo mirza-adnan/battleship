@@ -7,6 +7,7 @@ const ELEMENTS = {
     modalBg: document.querySelector(".modal-bg"),
     modelText: document.querySelector(".modal-text"),
     playerNames: document.querySelectorAll(".player-name"),
+    playAgainBtn: document.querySelector("#play-again-btn"),
 };
 
 export default ELEMENTS;

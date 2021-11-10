@@ -90,6 +90,14 @@ const DOM = (() => {
         ELEMENTS.modalBg.style.display = "none";
     };
 
+    const hidePlayAgainButton = () => {
+        ELEMENTS.playAgainBtn.classList.add("invisible");
+    };
+
+    const showPlayAgainButton = () => {
+        ELEMENTS.playAgainBtn.classList.remove("invisible");
+    };
+
     const startGame = () => {
         ELEMENTS.p1Grid.classList.remove("invisible");
         ELEMENTS.p2Grid.classList.remove("invisible");
@@ -111,6 +119,8 @@ const DOM = (() => {
         showShips,
         showModal,
         hideModal,
+        showPlayAgainButton,
+        hidePlayAgainButton,
         startGame,
     });
 })();

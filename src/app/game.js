@@ -30,7 +30,7 @@ const Game = (() => {
     const resetShips = () => {
         p1GameBoard.reset();
         player1.resetShips();
-        DOM.resetDirection();
+        DOM.resetOrientation();
         DOM.renderGrid(p1GameBoard.board, ELEMENTS.p1Grid, false);
         p1Drag.addGridCellListeners();
         DOM.showShips();
@@ -43,6 +43,7 @@ const Game = (() => {
         p2GameBoard.reset();
 
         DOM.resetGame();
+        DOM.resetOrientation();
         DOM.showShips();
         DOM.renderGrid(p1GameBoard.board, ELEMENTS.p1Grid);
         DOM.renderGrid(p2GameBoard.board, ELEMENTS.p2Grid);

@@ -11,7 +11,7 @@ function Ship(name, length) {
         return hits.every((item) => item);
     };
 
-    const toggleDirection = () => {
+    const toggleOrientation = () => {
         isHorizontal = !isHorizontal;
     };
 
@@ -33,7 +33,7 @@ function Ship(name, length) {
         },
         hit,
         isSunk,
-        toggleDirection,
+        toggleOrientation,
     });
 }
 

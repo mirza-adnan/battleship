@@ -69,7 +69,7 @@ function GameBoard() {
         // value of orientation can be either 1 or 0
         // if it is 1, we make the ship vertical
         if (orientation === 1) {
-            ship.toggleDirection();
+            ship.toggleOrientation();
         }
 
         if (isValidPosition(ship, y, x)) {

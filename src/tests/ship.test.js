@@ -51,9 +51,9 @@ describe("Ship Factory Function", () => {
         });
 
         test("toggleDirection", () => {
-            ship.toggleDirection();
+            ship.toggleOrientation();
             expect(ship.isHorizontal).toBe(false);
-            ship.toggleDirection();
+            ship.toggleOrientation();
             expect(ship.isHorizontal).toBe(true);
         });
     });

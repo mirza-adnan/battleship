@@ -56,7 +56,7 @@ const DOM = (() => {
         });
     };
 
-    const changeDirection = () => {
+    const changeOrientation = () => {
         ELEMENTS.shipsContainer.classList.toggle("horizontal");
         ELEMENTS.shipsContainer.classList.toggle("vertical");
     };
@@ -121,7 +121,7 @@ const DOM = (() => {
     return Object.freeze({
         renderGrid,
         createShips,
-        changeDirection,
+        changeOrientation,
         resetDirection,
         clearGrid,
         hideShips,

@@ -39,7 +39,7 @@ describe("GameBoard Factory Function", () => {
 
             test("places ship vertically", () => {
                 const ship = Ship("Cruiser", 3);
-                ship.toggleDirection();
+                ship.toggleOrientation();
 
                 gameBoard.placeShip(ship, 2, 3);
 
@@ -85,7 +85,7 @@ describe("GameBoard Factory Function", () => {
             test("all ships are sunk", () => {
                 const ship = Ship("Cruiser", 3);
                 const ship2 = Ship("Destroyer", 2);
-                ship2.toggleDirection();
+                ship2.toggleOrientation();
                 gameBoard.placeShip(ship, 3, 2);
                 gameBoard.placeShip(ship2, 5, 6);
                 for (let i = 0; i < ship.length; i++) {

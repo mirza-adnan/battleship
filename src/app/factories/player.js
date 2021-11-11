@@ -39,7 +39,7 @@ function Player(playerNum, type = "human") {
 
     const invertShips = () => {
         ships.forEach((ship) => {
-            ship.toggleDirection();
+            ship.toggleOrientation();
         });
     };
 

@@ -48,7 +48,7 @@ header {
     box-shadow: rgb(32 33 36 / 28%) 0px 1px 3px;
 }
 
-.start-btn {
+#start-btn {
     background-color: var(--clr-bg);
     border: 2px solid var(--clr-accent);
     color: var(--clr-text);
@@ -56,13 +56,13 @@ header {
     transition: all 0.3s ease;
 }
 
-.start-btn:hover {
+#start-btn:hover {
     background-color: var(--clr-accent);
     color: var(--clr-bg);
     transform: scale(1.06);
 }
 
-.start-btn:active {
+#start-btn:active {
     transform: scale(0.95);
 }
 

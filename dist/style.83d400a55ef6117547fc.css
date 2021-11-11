@@ -1,0 +1,213 @@
+:root {
+    --clr-bg: #282828;
+    --clr-text: #ebdbb2;
+    --clr-accent: #fabd2f;
+    --clr-green: #b8d041;
+    --clr-red: #fb4934;
+    --clr-white: #ededed;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
+    height: 100%;
+    font-family: "Press Start 2P";
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    box-shadow: rgb(32 33 36 / 28%) 0px 1px 3px;
+}
+
+#start-btn {
+    background-color: var(--clr-bg);
+    border: 2px solid var(--clr-accent);
+    color: var(--clr-text);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+#start-btn:hover {
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+    transform: scale(1.06);
+}
+
+#start-btn:active {
+    transform: scale(0.95);
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.control-btn {
+    background-color: var(--clr-text);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+    border: 1px solid var(--clr-accent);
+}
+
+.grid-cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--clr-accent);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.grid-ship {
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-accent);
+}
+
+.ships-container {
+    width: 350px;
+    height: 502px;
+    border: 2px solid var(--clr-accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ships-container.horizontal {
+    flex-direction: column;
+}
+
+.ships-container.vertical {
+    flex-direction: row;
+}
+
+.ship {
+    display: flex;
+    gap: 2px;
+}
+
+.horizontal .ship {
+    flex-direction: row;
+}
+
+.vertical .ship {
+    flex-direction: column;
+}
+
+.ship-square {
+    width: 48px;
+    height: 48px;
+    background-color: var(--clr-accent);
+}
+
+.placed-ship-square {
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-accent);
+}
+
+.invisible {
+    display: none;
+}
+
+.removed {
+    display: none;
+}
+
+.success {
+    background-color: var(--clr-green);
+}
+
+.danger {
+    background-color: var(--clr-red);
+}
+
+.miss {
+    background-color: var(--clr-text);
+}
+
+.modal-bg {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    max-width: 700px;
+    width: 90%;
+    height: 400px;
+    background-color: var(--clr-text);
+    color: var(--clr-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    user-select: none;
+    border: 3px solid var(--clr-accent);
+}
+
+.modal p {
+    font-size: 1.5rem;
+}
+
+.player-name {
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 1.5rem 0;
+}
+
+#play-again-btn {
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+

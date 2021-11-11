@@ -5,7 +5,7 @@ import Drag from "./view/drag";
 import ELEMENTS from "./view/elements";
 import { SHIPS } from "./helpers/data";
 
-function Game() {
+const Game = (() => {
     const player1 = Player(1);
     const player2 = Player(2, "computer");
 
@@ -141,6 +141,6 @@ function Game() {
     return Object.freeze({
         init,
     });
-}
+})();
 
 export default Game;

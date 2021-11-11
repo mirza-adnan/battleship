@@ -3,11 +3,14 @@ const ELEMENTS = {
     p2Grid: document.querySelector(".p2-grid"),
     shipsContainer: document.querySelector(".ships-container"),
     controlBtns: document.querySelector(".control-buttons"),
-    startBtn: document.querySelector(".start-btn"),
+    startBtn: document.querySelector("#start-btn"),
+    autoPlaceBtn: document.querySelector("#auto-place-btn"),
+    changeOrientationBtn: document.querySelector("#change-orientation-btn"),
+    resetBtn: document.querySelector("#reset-btn"),
+    playAgainBtn: document.querySelector("#play-again-btn"),
+    playerNames: document.querySelectorAll(".player-name"),
     modalBg: document.querySelector(".modal-bg"),
     modelText: document.querySelector(".modal-text"),
-    playerNames: document.querySelectorAll(".player-name"),
-    playAgainBtn: document.querySelector("#play-again-btn"),
 };
 
 export default ELEMENTS;
